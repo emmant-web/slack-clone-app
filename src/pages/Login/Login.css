@@ -1,0 +1,204 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.login-slack{
+    height: 100vh;
+}
+
+.slack-login-page{
+    /* background-color: #611F69; */
+    background-color: #4A154B;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo{
+    height: 3.5rem;
+    margin-bottom: 2rem;
+
+}
+
+
+.login-container{
+    background-color: white;
+    width: 492px;
+    height: 533px;
+    border-radius: 1rem;
+
+    margin-inline: auto;
+
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+
+}
+
+.welcome{
+    font-family: 'larsseit';
+    font-weight: 700;
+    color: #041E4E;
+    text-align: center;
+    font-size: 1rem;
+    padding-bottom: 0.3125rem;
+
+}
+
+
+
+.welcome-p{
+    font-family: 'circular';
+    font-weight: 200;
+    color: #8c8c8c;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 0.8125rem;
+}
+
+
+.input-div{
+    display: flex;
+    flex-direction: column;
+    
+    margin-inline: auto;
+    
+}
+
+
+.username{
+    font-family: 'larsseit';
+    font-weight: 700;
+    text-align: left;
+    color: #041E4E;
+    padding-left: 0.6rem;
+    margin-bottom: 0.6rem;
+
+   
+
+}
+
+
+
+.username-input{
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0.6rem;
+    margin-bottom: 0.8rem;
+
+    font-family: "larsseit";
+    font-weight: 200;
+
+    border: 2px solid #f2f2f2;
+
+    /* margin-inline: auto; */
+}
+
+.rememberme-and-password{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6.5rem;
+    margin-bottom: 3rem;
+}
+
+
+.rememberme{
+    display: flex;
+    gap: 0.2rem;
+    font-family: 'larsseit';
+    font-weight: 400;
+    font-size: 0.7rem;
+    align-items: center;
+    padding-left: 0.8rem;
+    color: #8c8c8c;
+}
+
+
+
+
+.password a{
+    font-family: 'larsseit';
+    font-weight: 600;
+    font-size: 0.7rem;
+ text-decoration: none;
+ color: #4A154B;
+}
+
+
+.sign-in{
+    width: 300px;
+    height: 45px;
+
+    padding: 12px 20px;
+    margin-inline: auto;
+    border-radius: 10px;
+    border: none;
+
+    /* background-color: #4A154B; */
+    background-color: #611F69;
+    color: white;
+    font-family: 'larsseit';
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+
+    cursor: pointer;
+}
+
+
+.contact-us{
+    width: 300px;
+    height: 45px;
+
+    padding: 12px 20px;
+    margin-inline: auto;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    color: #041E4E;
+    font-family: 'larsseit';
+    font-weight: 500;
+    border: 1px solid #8c8c8c;
+
+    margin-bottom: 0.7rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+
+    cursor: pointer;
+
+
+}
+
+
+.google-g-logo{
+    height: 2rem;
+    width: auto;
+}
+
+.no-account{
+font-family: 'circular';
+font-weight: 300;
+color: #8c8c8c;
+text-align: center;
+font-size: 0.8rem;
+}
+
+.no-account a{
+    font-family: 'larsseit';
+    font-weight: 600;
+    text-decoration: none;
+    color: #4A154B;
+    
+}
+
+

@@ -1,0 +1,169 @@
+/*********************** Circular Fonts ***************************/
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Book.otf') format('opentype');
+  font-weight: normal; /* Define the default weight for this font-family */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Black.otf') format('opentype');
+  font-weight: 900; /* Example for black weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-BoldItalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-BookItalic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Light.otf') format('opentype');
+  font-weight: 300; /* Example for light weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-Medium.otf') format('opentype');
+  font-weight: 500; /* Example for medium weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'circular';
+  src: url('./circular/CircularStd-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/*********************** Larsseit Fonts ***************************/
+
+@font-face {
+  font-family: 'larsseit'; /* Use a more general family name */
+  src: url('./larsseit/Larsseit.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-BoldItalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-ExtraBold.otf') format('opentype');
+  font-weight: 800; /* Example for extra-bold weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-ExtraBoldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-Thin.otf') format('opentype');
+  font-weight: 100; /* Example for thin weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'larsseit';
+  src: url('./larsseit/Larsseit-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+/*********************** Styled elements ***************************/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'larsseit', sans-serif;
+  font-weight: bold; /* Apply bold weight by default to headings */
+}
+
+p {
+  font-family: 'circular', sans-serif;
+  font-weight: normal; /* Apply the default weight for paragraphs */
+}
