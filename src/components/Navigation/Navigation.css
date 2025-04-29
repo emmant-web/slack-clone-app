@@ -1,0 +1,34 @@
+/* 
+
+.navigation {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+.navigation > .item {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+   
+.navigation > .item.active {
+    background-color: #04AA6D;
+    color: white;
+}
+  
+.navigation a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+  
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+} */
