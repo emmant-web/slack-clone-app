@@ -1,18 +1,18 @@
 import React from 'react'
-import SlackWhiteLogo from '../../assets/logos/slack-full-logo-white.svg'
+import LinkrFullLogo from '../../assets/logos/linkr-full-logo.svg'
 import GoogleGLogo from '../../assets/logos/google-g-logo.svg'
 import './Login.css'
 
 
 
 
-const Login = () => {
+function Login() {
   return (
 
 <div className='login-slack'>
 
     <div className="slack-login-page">
-    <img className="login-logo" src={SlackWhiteLogo} />
+    <img className="login-logo" src={LinkrFullLogo} />
     <div className="login-container">
 
 
@@ -43,8 +43,8 @@ const Login = () => {
         </div>
        </div>
 
-       <button className="sign-in">Login</button>
-       <button className="contact-us">
+       <button className="login">Login</button>
+       <button className="google-login">
         <img className="google-g-logo" src={GoogleGLogo} alt="google-g-logo" />
         Sign In With Google</button>
 

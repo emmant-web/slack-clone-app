@@ -10,7 +10,7 @@ import './assets/fonts/Fonts.css'
 function App() {
   return (
     <div className="App">
-     <Login />
+     <Login />x
      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigation />}>
