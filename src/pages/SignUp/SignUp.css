@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-body{
+.create-acc-body{
     height: 100vh;
 }
 
@@ -20,14 +20,14 @@ body{
     
 }
 
-.login-logo{
+.create-acc-logo{
     height: 4.5rem;
     margin-bottom: 2rem;
 
 }
 
 
-.login-container{
+.create-acc-container{
     background-color: white;
     width: 492px;
     height: 533px;
@@ -42,8 +42,8 @@ body{
 }
 
 
-.welcome{
-    font-family: 'Inter';
+.create-acc-welcome{
+    font-family: 'larsseit';
     font-weight: 700;
     color: #041E4E;
     text-align: center;
@@ -54,17 +54,17 @@ body{
 
 
 
-.welcome-p{
-    font-family: 'Lexend';
+.create-acc-welcome-p{
+    font-family: 'circular';
     font-weight: 200;
     color: #8c8c8c;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     text-align: center;
     font-size: 0.8125rem;
 }
 
 
-.input-div{
+.create-acc-input-divs{
     display: flex;
     flex-direction: column;
     
@@ -74,7 +74,7 @@ body{
 
 
 .input-title{
-    font-family: 'Inter';
+    font-family: 'larsseit';
     font-weight: 700;
     text-align: left;
     color: #041E4E;
@@ -88,56 +88,33 @@ body{
 
 
 
-.input{
+.ca-input{
     width: 300px;
     height: 40px;
     border-radius: 10px;
     padding: 0.6rem;
     margin-bottom: 0.8rem;
 
-    font-family: "Inter";
+    font-family: 'larsseit';
     font-weight: 200;
 
     border: 2px solid #f2f2f2;
 
-    /* margin-inline: auto; */
-}
-
-
-
-.rememberme-and-password{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6.5rem;
-    margin-bottom: 3rem;
-}
-
-
-.rememberme{
-    display: flex;
-    gap: 0.2rem;
-    font-family: 'Inter';
-    font-weight: 400;
-    font-size: 0.7rem;
-    align-items: center;
-    padding-left: 0.8rem;
-    color: #8c8c8c;
 }
 
 
 
 
-.password a{
-    font-family: 'Inter';
-    font-weight: 600;
-    font-size: 0.7rem;
- text-decoration: none;
- color: #4A154B;
-}
 
 
-.create-account{
+
+
+
+
+
+
+
+.create-account-button{
     width: 300px;
     height: 45px;
 
@@ -149,7 +126,7 @@ body{
     /* background-color: #4A154B; */
     background-color: #611F69;
     color: white;
-    font-family: 'Inter';
+    font-family: 'larsseit';
     font-weight: 500;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
@@ -158,19 +135,18 @@ body{
 }
 
 
-
-
-
-.no-account{
-font-family: 'Lexend';
+.no-account-ca{
+    font-family: 'circular';
 font-weight: 300;
 color: #8c8c8c;
 text-align: center;
 font-size: 0.8rem;
 }
 
-.no-account a{
-    font-family: 'Inter';
+
+
+.no-account-ca a{
+    font-family: 'larsseit';
     font-weight: 600;
     text-decoration: none;
     color: #4A154B;

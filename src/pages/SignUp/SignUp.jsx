@@ -5,40 +5,45 @@ import './SignUp.css'
 
 function SignUp(){
     return(
+
+        <div className="create-acc-body">
+
         <div className="linkr-create-account">
-        <img className="login-logo" src={LinkrFullLogo} alt="" />
-        <div className="login-container">
+        <img className="create-acc-logo" src={LinkrFullLogo} />
+        <div className="create-acc-container">
 
 
-            <p className="welcome">Create Account!</p>
-            <p className="welcome-p">Enter your details to create an account.</p>
+            <p className="create-acc-welcome">Create Account!</p>
+            <p className="create-acc-welcome-p">Enter your details to create an account.</p>
 
-        <div className="input-div">
+        <div className="create-acc-input-divs">
             <p className="input-title">Username</p>
-            <input className="input" type="text" placeholder="Enter your Username" />
+            <input className="ca-input" type="text" placeholder="Enter your Username" />
         </div>
 
     
-        <div className="input-div">
+        <div className="create-acc-input-divs">
             <p className="input-title">Password</p>
-            <input className="input" type="password" placeholder="Enter your Password" />
+            <input className="ca-input" type="password" placeholder="Enter your Password" />
         </div>
 
-        <div className="input-div">
+        <div className="create-acc-input-divs">
             <p className="input-title">Confirm Password</p>
-            <input className="input" type="password" placeholder="Confirm your Password" />
+            <input className="ca-input" type="password" placeholder="Confirm your Password" />
         </div>
 
 
 
-           <button className="create-account">Create Account</button>
+           <button className="create-account-button">Create Account</button>
            
 
-           <p className="no-account">Have an account?<a href="#" className="go-to-login"> Login</a></p>
+           <p className="no-account-ca">Have an account?<a href="#" className="go-to-login"> Login</a></p>
 
 
 
         </div>
+    </div>
+
     </div>
     )
 }

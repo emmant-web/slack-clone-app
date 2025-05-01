@@ -5,11 +5,11 @@
 }
 
 
-.login-slack{
+.login-body{
     height: 100vh;
 }
 
-.slack-login-page{
+.linkr-login-page{
     /* background-color: #611F69; */
     background-color: #4A154B;
     height: 100vh;
@@ -41,19 +41,19 @@
 
 }
 
-.welcome{
+.login-welcome{
     font-family: 'larsseit';
     font-weight: 700;
     color: #041E4E;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding-bottom: 0.3125rem;
 
 }
 
 
 
-.welcome-p{
+.login-welcome-p{
     font-family: 'circular';
     font-weight: 200;
     color: #8c8c8c;
@@ -72,7 +72,7 @@
 }
 
 
-.username{
+.login-input-title{
     font-family: 'larsseit';
     font-weight: 700;
     text-align: left;
@@ -86,7 +86,7 @@
 
 
 
-.username-input{
+.login-input{
     width: 300px;
     height: 40px;
     border-radius: 10px;
@@ -98,7 +98,6 @@
 
     border: 2px solid #f2f2f2;
 
-    /* margin-inline: auto; */
 }
 
 .rememberme-and-password{
@@ -133,7 +132,7 @@
 }
 
 
-.login{
+.login-button{
     width: 300px;
     height: 45px;
 
@@ -153,7 +152,7 @@
 }
 
 
-.google-login{
+.google-login-button{
     width: 300px;
     height: 45px;
 
