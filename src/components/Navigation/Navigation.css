@@ -4,7 +4,7 @@
     display: flex;
     gap: 5px;
     margin: 0;
-    padding: 5px;
+    padding: 8px 8px 8px 5px;
     height: 100vh;
     background-color: #4A154B;
     overflow: auto;
@@ -14,44 +14,49 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
     background-color: #4A154B;
     height: 100%;
     width: 80px;
     border-radius: 10px;
     padding: 15px;
-    border: #572758 solid 1px; /* To delete later*/
+    /* border: #572758 solid 1px;  */
+    /*To delete later */
 }
 
-.navigation-container .logout-icon {
-    justify-self: end;
+.navigation-container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    height: 100%;
 }
 
-/* .navigation-icon {
-    transform: scale(2);
-} */
-
-
-
-/* .navigation > .item {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
+.navigation-container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
 }
-   
-.navigation > .item.active {
-    background-color: #04AA6D;
-    color: white;
+
+.nav-icon {
+    padding: 7px;
+    border-radius: 13px;
 }
-  
-.navigation a:hover:not(.active) {
-    background-color: #555;
-    color: white;
+
+.nav-icon:hover {
+    background-color: #775279;
+    transform: scale(1.05);
+    transition: 0.3s;
 }
-  
-div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-} */
+
+.active {
+    background-color: #775279;
+}
+
+.nav-icon-des {
+    margin-top: -20px;
+    color: #FFFFFF;
+    font-size: 13px
+}
+
