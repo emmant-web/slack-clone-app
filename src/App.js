@@ -28,11 +28,6 @@ function App() {
 
   return (
     <div className="App">
-     {/* <Login />
-     <SignUp/> */}
-
-
-
 
 <DataProvider>
      <BrowserRouter>
@@ -45,12 +40,7 @@ function App() {
 
 
 
-
-
-
-
       {/* Protected pages. User should be "authenticated" first before they can access this page */}
-
 
 
       <Route path="/homepage" element={
@@ -61,8 +51,15 @@ function App() {
               )
             }>
 
-            <Route index element={<Messages />} />
+            <Route path="messages" element={<Messages />} />
+
+  
+
+
+
             <Route path="channels" element={<Channels />} />
+
+
             <Route path="*" element={<NotFound />} />
           </Route>  
 

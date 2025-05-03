@@ -13,7 +13,7 @@ function Navigation() {
             <nav className="navigation-container">
                 <div className="navigation-container1">
                     <img className="linkr-nav-logo" src={LinkrNavLogo} width={50} style={{marginBottom:'20px'}}/>
-                    <NavLink to="/" className="nav-icon">
+                    <NavLink to="messages" className="nav-icon">
                         <ChatIcon  
                             style={{ 
                                 fontSize: 40, 

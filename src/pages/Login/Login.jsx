@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataProvider";
 
 
+import { NavLink } from "react-router";
+
+
 import LinkrFullLogo from '../../assets/logos/linkr-full-logo.svg'
 import GoogleGLogo from '../../assets/logos/google-g-logo.svg'
 import './Login.css'
@@ -126,17 +129,17 @@ const { onLogin } = props;
         </div>
        </div>
 
-       <button className="login-button">Login</button>
+       <button className="login-button" type="submit">Login</button>
        <button className="google-login-button">
         <img className="google-g-logo" src={GoogleGLogo} alt="google-g-logo" />
         Sign In With Google</button>
 
-
 {/* end of form */}
+
 </form>
 
 
-       <p className="no-account">Don't have an account? <a className="sign-up">Create Account</a>
+       <p className="no-account">Don't have an account? 
       
         </p>
 

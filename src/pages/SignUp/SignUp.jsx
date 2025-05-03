@@ -1,9 +1,24 @@
 
 
+
+import React, { useState } from "react";
+import axios from "axios";
+import { API_URL } from "../../constants/Constants";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../context/DataProvider";
+
+
 import LinkrFullLogo from '../../assets/logos/linkr-full-logo.svg'
 import './SignUp.css'
 
 function SignUp(){
+
+
+  
+
+
+
+
     return(
 
         <div className="create-acc-body">
