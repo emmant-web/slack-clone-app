@@ -8,21 +8,69 @@ import NotFound from './pages/NotFound/NotFound.jsx'; // To set-up later
 import Navigation from './components/Navigation/Navigation.jsx';
 import './assets/fonts/Fonts.css'
 
+
+import DataProvider from "./context/DataProvider";
+
 function App() {
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleLogin = () => {
+      setIsAuthenticated(true);
+    };
+
+    const handleLogout = () => {
+      setIsAuthenticated(false);
+    }
+
+
+
+
   return (
     <div className="App">
-     <Login />
-     <SignUp/>
+     {/* <Login />
+     <SignUp/> */}
 
+
+
+
+<DataProvider>
      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigation />}>
+ {/* Upon first loading of the app, this will be loaded first */}
+            <Route
+            path="/"
+            element={<Login onLogin={handleLogin} />}
+          />
+
+
+
+
+
+
+
+      {/* Protected pages. User should be "authenticated" first before they can access this page */}
+
+
+
+      <Route path="/homepage" element={
+              isAuthenticated ? (
+                <Navigation onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }>
+
             <Route index element={<Messages />} />
             <Route path="channels" element={<Channels />} />
             <Route path="*" element={<NotFound />} />
           </Route>  
+
+
         </Routes>
       </BrowserRouter>
+
+      </DataProvider>
     </div>
   );
 }
