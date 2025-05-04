@@ -38,6 +38,11 @@ function App() {
             element={<Login onLogin={handleLogin} />}
           />
 
+          <Route
+            path="/signup"
+            element={<SignUp />}
+          />
+
 
 
       {/* Protected pages. User should be "authenticated" first before they can access this page */}

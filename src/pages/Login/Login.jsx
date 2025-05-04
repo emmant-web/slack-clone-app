@@ -33,8 +33,8 @@ const { onLogin } = props;
 
 
 
-
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     // Add authentication here
     try {
@@ -50,6 +50,8 @@ const { onLogin } = props;
       }
 
       const response = await axios.post(`${API_URL}/auth/sign_in`, loginCredentials);
+
+
       const { data, headers } = response;
       if(data && headers){
         const accessToken = headers["access-token"];
@@ -89,14 +91,16 @@ const { onLogin } = props;
     <img className="login-logo" src={LinkrFullLogo} />
     <div className="login-container">
 
+        
+{/* start of form */}
+<form onSubmit={handleSubmit}>    
+
 
         <p className="login-welcome">Welcome!</p>
         <p className="login-welcome-p">Hello! Please enter your details.</p>
 
 
 
-{/* start of form */}
-        <form onSubmit={handleSubmit}>    
 
 
     <div className="input-div">
@@ -136,14 +140,16 @@ const { onLogin } = props;
 
 {/* end of form */}
 
-</form>
 
 
-       <p className="no-account">Don't have an account? 
-      
+
+       <p className="no-account">Don't have an account?  
+<NavLink to="/signup">
+       <a className="sign-up">Create Account</a>
+       </NavLink>
         </p>
 
-
+        </form>
 
     </div>
 </div>

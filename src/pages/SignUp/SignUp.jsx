@@ -7,6 +7,7 @@ import { API_URL } from "../../constants/Constants";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataProvider";
 
+import { NavLink } from "react-router";
 
 import LinkrFullLogo from '../../assets/logos/linkr-full-logo.svg'
 import './SignUp.css'
@@ -14,7 +15,12 @@ import './SignUp.css'
 function SignUp(){
 
 
-  
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
+   const [confirmPassword, setConfirmPassword] = useState("")
+
+
+   
 
 
 
@@ -52,7 +58,15 @@ function SignUp(){
            <button className="create-account-button">Create Account</button>
            
 
-           <p className="no-account-ca">Have an account?<a href="#" className="go-to-login"> Login</a></p>
+           <p className="no-account-ca">Have an account?
+            
+           
+
+            <NavLink to="/">
+            <a href="#" className="go-to-login"> Login</a>
+            </NavLink>
+            
+            </p>
 
 
 
