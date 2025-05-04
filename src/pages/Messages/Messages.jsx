@@ -5,6 +5,8 @@ import { useData } from "../../context/DataProvider";
 import axios from 'axios';
 import { API_URL } from "../../constants/Constants";
 import { useNavigate } from "react-router-dom";
+import Navigation from '../../components/Navigation/Navigation.jsx';
+import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
 
 function Messages() {
 
@@ -54,7 +56,12 @@ function Messages() {
     return (
       <div className="messages">
 
-
+        <div className="messages-user">
+            <CurrentUser />
+        </div>
+        <div className="messages-nav">
+            <Navigation />
+        </div>
 
 
           <div className="messages-left">
