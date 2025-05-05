@@ -65,6 +65,8 @@ const { onLogin } = props;
         // keep the headers value in our context - these can now be used in other pages/components
         handleHeaders(headers);
 
+
+        
         onLogin();
         navigate('/homepage');
       }
@@ -138,17 +140,17 @@ const { onLogin } = props;
         <img className="google-g-logo" src={GoogleGLogo} alt="google-g-logo" />
         Sign In With Google</button>
 
-{/* end of form */}
+
 
 
 
 
        <p className="no-account">Don't have an account?  
 <NavLink to="/signup">
-       <a className="sign-up">Create Account</a>
+       <a className="sign-up"> Create Account</a>
        </NavLink>
         </p>
-
+{/* end of form */}
         </form>
 
     </div>
