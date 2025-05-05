@@ -1,4 +1,6 @@
 .current-user {
     color: white;
     text-align: right;
+    font-style: italic;
+    margin-inline: 10px;
 }

@@ -6,6 +6,7 @@ const DataContext = createContext();
 
 const DataProvider = ({children}) => {
     const [ userHeaders, setUserHeaders ] = useState('')
+    const [ userList, setUserList ] = useState('')
 
     const handleHeaders = (header) => {
         const updatedHeader = {
@@ -16,12 +17,22 @@ const DataProvider = ({children}) => {
         }
         setUserHeaders(updatedHeader)
     }
+
+    const handleUser = (user) => {
+        const updatedUser = {
+            id: user.id,
+            email: user.expiry,
+        }
+        setUserList(updatedUser)
+    }
     
     return (
         <DataContext.Provider value={
             {
                 handleHeaders,
                 userHeaders,
+                handleUser,
+                userList,
             }
         }>
             {/* children - these are the elements that can use the context */}
