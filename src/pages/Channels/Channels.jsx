@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Channels.css';
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
@@ -18,15 +18,21 @@ function Channels() {
         headers: userHeaders
       }
 
-      const response = await axios.get(`${API_URL}/channels`);
-      const { channel } = response;
-      setChannelList(channel.data);
+      const response = await axios.get(`${API_URL}/channels`, requestHeaders);
+      const { data } = response;
+      setChannelList(data.data);
     } catch (error) {
       if(error) {
-        return alert("No channels available");
+        return alert("No channels available.");
       }
     }
   }
+
+  useEffect(() => {
+    if(channelList.length === 0) {
+      getChannels();
+    }
+  })
 
   return (
     <div className="channels">
@@ -43,9 +49,27 @@ function Channels() {
           </div>
 
 
+
+
+
           <div className="channels-left2">
-            <p>Channels will be here</p>
+            {
+              channelList && 
+              channelList.map((group) => {
+                const { name, id } = group;
+                return (
+                  <div key={id} className="individual-channel">
+                    <p>Channel Name: {name}</p>
+                    <p>Channel ID: {id}</p>
+                  </div>
+                )
+              })
+            }
           </div>
+
+
+
+
 
 
           <div className="channels-left3">
