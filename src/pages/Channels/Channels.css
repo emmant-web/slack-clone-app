@@ -49,14 +49,15 @@
 
 .channels-left1 {
     text-align: center;
-    /* background-color: lightblue; */
+    background-color: lightblue;
     grid-area: 1 / 1 / 1 / 1;
 }
 
 .channels-left2 {
     display: grid;
     text-align: center;
-    /* background-color: lightpink; */
+    align-content: start;
+    background-color: lightpink;
     grid-area: 2 / 1 / 2 / 1;
     gap: 2px;
     overflow-y: hidden;
@@ -100,7 +101,7 @@
     height: 60px;
     text-align: left;
     align-items: center;
-    /* background-color: lightcoral; */
+    background-color: lightcoral;
     padding: 8px 15px;
     cursor: pointer;
 }
