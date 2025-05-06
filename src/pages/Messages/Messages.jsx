@@ -1,6 +1,6 @@
 import './Messages.css';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useData } from "../../context/DataProvider";
 import axios from 'axios';
 import { API_URL } from "../../constants/Constants";
@@ -8,19 +8,29 @@ import { useNavigate } from "react-router-dom";
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
 
+
+import MessagingUsersList from '../../components/MessagingUsersList/MessagingUsersList.jsx';
+
+
 function Messages() {
 
 
 
 
   const { userHeaders } = useData();
+  const navigate = useNavigate();
+  
+//   for sending messages
   const [receiver, setReceiver] = useState();
   const [message, setMessage] = useState();
-  const navigate = useNavigate();
+
+
+//   for sending messages
 
   const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+
           const requestBody = {
               receiver_id: Number(receiver),
               receiver_class: "User",
@@ -30,6 +40,7 @@ function Messages() {
           const requestHeaders = {
               headers: userHeaders
           }
+
 
           // axios.post(url, request body, request headers)
           const response = await axios.post(`${API_URL}/messages`, requestBody, requestHeaders);
@@ -53,12 +64,17 @@ function Messages() {
 
 
 
+
+
+
     return (
       <div className="messages">
 
         <div className="messages-user">
             <CurrentUser />
         </div>
+
+        
         <div className="messages-nav">
             <Navigation />
         </div>
@@ -66,11 +82,9 @@ function Messages() {
 
           <div className="messages-left">
             <h1>Messages</h1>
+            <MessagingUsersList/>
             <button className='new-message-button'>New Message</button>
           </div>
-
-
-
 
 
           <div className="messages-right">
@@ -78,6 +92,8 @@ function Messages() {
 {/* send message to user */}
 
 <form onSubmit={handleSubmit}>
+
+
                 <label>Send to:</label>
                 <input
                     type="number"
@@ -86,14 +102,18 @@ function Messages() {
                     onChange={(event) => setReceiver(event.target.value)}
                 >
                 </input>
+
                 <label>Message:</label>
                 <input
                     type="text"
                     className="input-style"
                     onChange={(event) => setMessage(event.target.value)}
                 >
+
                 </input>
                 <button type='submit'>Send Message</button>
+
+
             </form>
 
 

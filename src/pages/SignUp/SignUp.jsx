@@ -15,6 +15,7 @@ import './SignUp.css'
 function SignUp(){
 
 
+
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [confirmPassword, setConfirmPassword] = useState("")
@@ -141,6 +142,7 @@ function SignUp(){
             
             />
         </div>
+        {error && <p className="error-message">{error}</p>}
 
 
 
