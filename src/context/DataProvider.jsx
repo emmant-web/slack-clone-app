@@ -1,4 +1,7 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "../constants/Constants";
+
 
 // React Context is a way to manage state globally.
 // createContext is a method provided by React's Context API. It facilitates a way to pass data through the component without having to pass props down manually at every level.
@@ -18,12 +21,20 @@ const DataProvider = ({children}) => {
         setUserHeaders(updatedHeader)
     }
 
-    const handleUser = (user) => {
-        const updatedUser = {
-            id: user.id,
-            email: user.expiry,
+    const getUsers = async () => {
+        try {
+        
+          const requestHeaders = {
+            headers: userHeaders
+          }
+          const response = await axios.get(`${API_URL}/users`, requestHeaders);
+          const { data } = response;
+          setUserList(data.data);
+        } catch (error) {
+          if(error) {
+            return alert("Cannot get users");
+          }
         }
-        setUserList(updatedUser)
     }
     
     return (
@@ -31,7 +42,7 @@ const DataProvider = ({children}) => {
             {
                 handleHeaders,
                 userHeaders,
-                handleUser,
+                getUsers,
                 userList,
             }
         }>
