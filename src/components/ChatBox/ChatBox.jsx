@@ -20,6 +20,7 @@ function ChatBox({ selectedUser, userHeaders }) {
       console.error('Failed to fetch messages', err);
     }
   };
+  
 
 
   useEffect(() => {
