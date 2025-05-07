@@ -1,17 +1,20 @@
-// import './ChatBox.css';
+import './ChannelChatBox.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/Constants';
-import ChatBoxInput from '../ChatBoxInput/ChatBoxInput';
+import ChannelChatBoxInput from '../ChannelChatBoxInput/ChannelChatBoxInput';
 
 
 
-function ChatBox({ selectedUser, userHeaders }) {
+function ChannelChatBox({ selectedChannel, userHeaders }) {
   const [messages, setMessages] = useState([]);
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`${API_URL}/messages?receiver_id=${selectedUser.id}&receiver_class=User`,{ headers: userHeaders });
+      const res = await axios.get(
+        `${API_URL}/messages?receiver_id=${selectedChannel}&receiver_class=Channel`,
+        { headers: userHeaders }
+      );
       setMessages(res.data.data);
     } catch (err) {
       console.error('Failed to fetch messages', err);
@@ -21,10 +24,10 @@ function ChatBox({ selectedUser, userHeaders }) {
 
 
   useEffect(() => {
-    if (selectedUser) {
+    if (selectedChannel) {
       fetchMessages();
     }
-  }, [selectedUser]);
+  }, [selectedChannel]);
 
 
 
@@ -33,8 +36,8 @@ function ChatBox({ selectedUser, userHeaders }) {
       await axios.post(
         `${API_URL}/messages`,
         {
-          receiver_id: selectedUser.id,
-          receiver_class: 'User',
+          receiver_id: selectedChannel,
+          receiver_class: 'Channel',
           body: newMessage,
         },
         { headers: userHeaders }
@@ -56,7 +59,7 @@ function ChatBox({ selectedUser, userHeaders }) {
           <div
             key={msg.id}
             className={`chat-message ${
-              msg.sender_id === selectedUser.id ? 'incoming' : 'outgoing'
+              msg.sender_id === selectedChannel ? 'incoming' : 'outgoing'
             }`}
           >
             {msg.body}
@@ -64,9 +67,9 @@ function ChatBox({ selectedUser, userHeaders }) {
         ))}
       </div>
 
-      <ChatBoxInput onSend={handleSend} />
+      <ChannelChatBoxInput onSend={handleSend} />
     </div>
   );
 }
 
-export default ChatBox;
+export default ChannelChatBox;

@@ -28,40 +28,31 @@
     grid-area: 2 / 2 / 2 / 2;
     display: grid;
     grid-template-columns: 280px;
-    grid-template-rows: 110px auto 40px;
+    grid-template-rows: 60px auto 40px;
     gap: 5px;
     background-color: #572758;
     color: #FFFFFF;
     border-radius: 10px 0 0 10px;
-    padding: 10px;
+    padding: 20px 10px;
     width: 300px;
-}
-
-.channels-right {
-    grid-area: 2 / 3 / 2 / 3;
-    background-color: #FFFFFF;
-    color: #000000;
-    border-radius: 0 10px 10px 0;
-    padding: 15px;
-    width: 100%;
-    min-width: 500px;
 }
 
 .channels-left1 {
     text-align: center;
-    background-color: lightblue;
+    align-content: start;
+    padding: 7px 15px 0 15px;
     grid-area: 1 / 1 / 1 / 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .channels-left2 {
     display: grid;
     text-align: center;
     align-content: start;
-    background-color: lightpink;
     grid-area: 2 / 1 / 2 / 1;
     gap: 2px;
     overflow-y: hidden;
-    max-height: calc(100vh - 226px);
+    max-height: calc(100vh - 176px);
     scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0);
 }
 .channels-left2:hover {
@@ -101,11 +92,47 @@
     height: 60px;
     text-align: left;
     align-items: center;
-    background-color: lightcoral;
     padding: 8px 15px;
     cursor: pointer;
 }
 
 .individual-channel:hover {
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, .2) !important;
+}
+
+
+.channels-right {
+    grid-area: 2 / 3 / 2 / 3;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 60px auto;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 10px;
+    width: 100%;
+    min-width: 500px;
+    
+}
+
+.channels-right1 {
+    grid-area: 1 / 1 / 1 / 1;
+    background-color: lightskyblue;
+    align-content: start;
+    color: #000000;
+    border-radius: 0 10px 0 0;
+    padding: 7px 15px 0 15px;
+    width: 100%;
+    min-width: 500px;
+    border-bottom: 1px solid #775279;
+}
+
+.channels-right2 {
+    grid-area: 2 / 1 / 2 / 1;
+    background-color: lightgoldenrodyellow;
+    color: #000000;
+    border-radius: 0 0 10px 0;
+    padding: 15px;
+    width: 100%;
+    min-width: 500px;
 }
