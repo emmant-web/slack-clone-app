@@ -1,130 +1,68 @@
 import './Messages.css';
-
-import { useState, useEffect } from "react";
-import { useData } from "../../context/DataProvider";
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_URL } from "../../constants/Constants";
-import { useNavigate } from "react-router-dom";
+import { API_URL } from '../../constants/Constants';
+import { useData } from '../../context/DataProvider';
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
-
-
 import MessagingUsersList from '../../components/MessagingUsersList/MessagingUsersList.jsx';
+import ChatBox from '../../components/ChatBox/ChatBox.jsx';
+
+
 
 
 function Messages() {
-
-
-
-
   const { userHeaders } = useData();
-  const navigate = useNavigate();
-  
-//   for sending messages
-  const [receiver, setReceiver] = useState();
-  const [message, setMessage] = useState();
+  const [users, setUsers] = useState([]);
+
+  const [selectedUser, setSelectedUser] = useState(null);
 
 
-//   for sending messages
 
-  const handleSubmit = async (e) => {
-      e.preventDefault();
+
+  useEffect(() => {
+    const fetchUsers = async () => {
       try {
-
-          const requestBody = {
-              receiver_id: Number(receiver),
-              receiver_class: "User",
-              body: message
-          }
-
-          const requestHeaders = {
-              headers: userHeaders
-          }
-
-
-          // axios.post(url, request body, request headers)
-          const response = await axios.post(`${API_URL}/messages`, requestBody, requestHeaders);
-
-          const { data } = response;
-
-          if(data.data){
-              navigate('/dashboard');
-              return alert("Successfully sent a message");
-          }
-      } catch (error) {
-          if(error){
-              return alert("Cannot send message");
-          }
+        const res = await axios.get(`${API_URL}/users`, {
+          headers: userHeaders,
+        });
+        setUsers(res.data.data);
+      } catch (err) {
+        console.error('Failed to load users', err);
       }
-  };
+    };
+
+    fetchUsers();
+  }, [userHeaders]);
 
 
 
+  return (
+    <div className="messages">
+      <div className="messages-user">
+        <CurrentUser />
+      </div>
 
+      <div className="messages-nav">
+        <Navigation />
+      </div>
 
+      <div className="messages-left">
+        <h1 className="messages-left-title">Messages</h1>
+        <MessagingUsersList users={users} onUserSelect={setSelectedUser} />
+      </div>
 
+      <div className="messages-right">
 
-
-
-
-    return (
-      <div className="messages">
-
-        <div className="messages-user">
-            <CurrentUser />
-        </div>
-
-        
-        <div className="messages-nav">
-            <Navigation />
-        </div>
-
-
-          <div className="messages-left">
-            <h1>Messages</h1>
-            <MessagingUsersList/>
-            <button className='new-message-button'>New Message</button>
-          </div>
-
-
-          <div className="messages-right">
-
-{/* send message to user */}
-
-<form onSubmit={handleSubmit}>
-
-
-                <label>Send to:</label>
-                <input
-                    type="number"
-                    className="input-style"
-                    placeholder='type ID number of user'
-                    onChange={(event) => setReceiver(event.target.value)}
-                >
-                </input>
-
-                <label>Message:</label>
-                <input
-                    type="text"
-                    className="input-style"
-                    onChange={(event) => setMessage(event.target.value)}
-                >
-
-                </input>
-                <button type='submit'>Send Message</button>
-
-
-            </form>
-
-
-
-
-          </div>
-
-
+        {selectedUser ? (
+          <ChatBox selectedUser={selectedUser} userHeaders={userHeaders} />
+        ) : (
+          <p style={{ padding: '1rem' }}>Select a user to start chatting.</p>
+        )}
 
       </div>
-    );
+    </div>
+  );
 }
-  
+
 export default Messages;

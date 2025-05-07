@@ -1,75 +1,98 @@
-import { useState, useEffect } from "react";
-import { useData } from "../../context/DataProvider";
-import axios from 'axios';
-import { API_URL } from "../../constants/Constants";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  Stack,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+} from "@mui/material";
 
-import "./MessagingUsersList.css"
+import SearchIcon from '@mui/icons-material/Search';
 
+function MessagingUsersList({ users, onUserSelect }) {
+  const [inputTerm, setInputTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(null); // for highlighting
 
+  const handleSearch = () => {
+    setSearchTerm(inputTerm.trim().toLowerCase());
+  };
 
-function MessagingUsersList (){
+  const handleUserClick = (user) => {
+    onUserSelect(user);
+    setSelectedUserId(user.id); // update selected user
+  };
 
+  const filteredUsers = users
+    .filter((user) => user.id >= 194)
+    .filter((user) => user.email.toLowerCase().includes(searchTerm));
 
-    const { userHeaders } = useData();
-    const navigate = useNavigate();
-  
+  return (
+    <Box>
+      {/* Search bar and button */}
+      <Stack direction="row" spacing={1} marginBottom={2}>
 
+        <TextField
+          sx={{
+            bgcolor: "white",
+            border: "1px solid #ddd",
+br: "5px"
+          }}
 
-//   for seeing the users
-  const [userList, setUserList] = useState([]);
+          label="Search by email"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={inputTerm}
+          onChange={(e) => setInputTerm(e.target.value)}
+        />
 
+        <Button 
+          sx={{
+            bgcolor: "#007A5A",
+          }}
+        variant="contained" onClick={handleSearch}>
+          <SearchIcon/>
+        </Button>
+      </Stack>
 
-  //   to get the users of the page
+      {/* Scrollable user list */}
+      <Paper
+        elevation={2}
+        sx={{
+          maxHeight: 550,
+          overflowY: "auto",
+          padding: 1,
+          border: "1px solid #ddd",
+          bgcolor: "white"
 
-  const getUsers = async () => {
-    try {
-      // axios.get(url, object that has the headers key - value would be the required headers)
-
-      const requestHeaders = {
-        headers: userHeaders
-      }
-      const response = await axios.get(`${API_URL}/users`, requestHeaders);
-      const { data } = response;
-      setUserList(data.data);
-    } catch (error) {
-      if(error) {
-        return alert("Cannot get users");
-      }
-    }
-  }
-
-  useEffect(() => {
-    if(userList.length === 0) {
-      getUsers();
-    }
-  })
-
-
-
-
-
-return(
-    <>
-    {
-  userList &&
-  userList
-    .filter((individual) => individual.id >= 194)
-    .map((individual) => {
-      const { id, email } = individual;
-      return (
-        <div key={id}>
-          <p>ID: {id}</p>
-          <p>Email: {email}</p>
-        </div>
-      );
-    })
-}
-
-    
-    </>
-)
-
+        }}
+      >
+        <List dense>
+          {filteredUsers.map((user) => (
+            <ListItem
+              key={user.id}
+              button
+              onClick={() => handleUserClick(user)}
+              sx={{
+                wordBreak: "break-word",
+                backgroundColor:
+                  selectedUserId === user.id ? "#e3f2fd" : "transparent", // highlight selected
+                "&:hover": {
+                  backgroundColor: "#f5f5f5", // hover color
+                },
+              }}
+            >
+              <ListItemText primary={user.email} />
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
+    </Box>
+  );
 }
 
 export default MessagingUsersList;
