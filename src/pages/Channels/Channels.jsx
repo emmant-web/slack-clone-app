@@ -2,28 +2,32 @@ import React, { useEffect, useState } from "react";
 import './Channels.css';
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
-import LinkrLogo from '../../assets/logos/linkr-full-logo.svg';
 import axios from "axios";
 import { API_URL } from "../../constants/Constants";
 import { useData } from "../../context/DataProvider";
-import Paper from '@mui/material/Paper';
-import AddIcon from '@mui/icons-material/Add';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Button, FormControl,   MenuItem, InputLabel, TextField, Select, Box } from '@mui/material'
+import ChannelChatBox from '../../components/ChannelChatBox/ChannelChatBox.jsx';
 
 
 function Channels() {
   const { userHeaders } = useData();
   const { getUsers } = useData();
   const { userList } = useData();
+
   const [channelList, setChannelList] = useState([]);
+  const [channelDetails, setChannelDetails] = useState([]);
+  
   const [openAddDialog, setOpenAddDialog] = useState(false);
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const [openMembersDialog, setOpenMembersDialog] = useState(false);
+
   const [newChannelName, setChannelName] = useState();
-  const [newChannelMember, setChannelMember] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedAddId, setSelectedAddId] = useState(null);
+  const [selectedChannel, setSelectedChannel] = useState(null);
+  const [selectedChannelName, setSelectedChannelName] = useState(null);
+  const [memberArrayLength, setMemberArrayLength] = useState(0);
 
   
   // SHOW CHANNEL
@@ -48,24 +52,17 @@ function Channels() {
     if(channelList.length === 0) {
       getChannels();
     }
-  })
+  },[userHeaders])
 
 
-  // ADD CHANNEL
-  const handleOpenAddDialog = () => {
-    setOpenAddDialog(true);
-  };
 
-  const handleCloseAddDialog = () => {
-    setOpenAddDialog(false);
-  };
-
-  const handleAddChannel = async (e) => {
+  // CREATE CHANNEL
+ const handleAddChannel = async (e) => {
     e.preventDefault();
     try {
       const requestBody = {
         name: newChannelName,
-        user_ids: newChannelMember,
+        user_ids: selectedIds,
       }
 
       const requestHeaders = {
@@ -88,42 +85,106 @@ function Channels() {
       }
   };
   
-  // SELECT MEMBER ID
+  // OPEN DIALOG (CREATE CHANNEL)
+  const handleOpenAddDialog = () => {
+    setOpenAddDialog(true);
+    getUsers();
+  };
 
-      // const getUsers = async () => {
-      //     try {
-          
-      //       const requestHeaders = {
-      //         headers: userHeaders
-      //       }
-      //       const response = await axios.get(`${API_URL}/users`, requestHeaders);
-      //       const { data } = response;
-      //       setUserList(data.data);
-      //     } catch (error) {
-      //       if(error) {
-      //         return alert("Cannot get users");
-      //       }
-      //     }
-      //   }
-      
-      //   useEffect(() => {
-      //     if(userList.length === 0) {
-      //       getUsers();
-      //     }
-      //   })
+  const handleCloseAddDialog = () => {
+    setOpenAddDialog(false);
+  };
 
-  const handleCheckboxChange = (event, id) => {
-    if (event.target.checked) {
-      setSelectedIds(prev => [...prev, id]);
-    } else {
-      setSelectedIds(prev => prev.filter(itemId => itemId !== id));
-    }
-    console.log(selectedIds);
-    setChannelMember(selectedIds);
+  // MEMBER CHECKBOX (CREATE CHANNEL)
+  const handleCheckboxChange = (id) => {
+    setSelectedIds(prev =>
+      prev.includes(id)
+        ? prev.filter(item => item !== id) 
+        : [...prev, id]                    
+    );
   };
 
 
+
+  // CHANNEL DETAILS
+  const getChannelDetails = async () => {
+    try {
+
+      const requestHeaders = {
+        headers: userHeaders
+      }
+
+      const response = await axios.get(`${API_URL}/channels/${selectedChannel}`, requestHeaders);
+      const { data } = response;
+      setChannelDetails(data.data);
+      setMemberArrayLength(data.data["channel_members"].length)
+    } catch (error) {
+      if(error) {
+        return alert("Data not availabe at this time. Try again later");
+      }
+    }
+  }
+
+
+  // OPEN DIALOG (CHANNEL DETAILS)
+  const handleOpenDetailsDialog = () => {
+    setOpenDetailsDialog(true);
+    getChannelDetails();
+    getUsers();
+  };
+  const handleCloseDetailsDialog = () => {
+    setOpenDetailsDialog(false);
+  };
+
+
+      
+  // ADD MEMBER TO THE CHANNEL
+  const handleAddMember = async (e) => {
+    e.preventDefault();
+    try {
+      const requestBody = {
+        id: selectedChannel,
+        member_id: selectedAddId,
+      }
+
+      const requestHeaders = {
+      headers: userHeaders
+      }
+
+      const response = await axios.post(`${API_URL}/channel/add_member`, requestBody, requestHeaders);
+
+      const { data } = response;
+
+      if(data.data){
+        handleCloseMembersDialog();
+        return alert("A member is added to the channel.");
+        // {userList && userList
+        //   .filter((addedMember) => addedMember.id == {selectedAddId});
+        //   const addedMemberName = addedMember.email
+        //   return alert(`${addedMemberName} is added to the channel.`);
+        // }
+      }
+    } catch (error) {
+        if(error){
+          return alert("Unable to add new member to the channel. Please try again later.");
+        }
+      }
+  };
   
+  // OPEN DIALOG (ADD MEMBER)
+  const handleOpenMembersDialog = () => {
+    setOpenMembersDialog(true);
+    getUsers();
+  };
+
+  const handleCloseMembersDialog = () => {
+    setOpenMembersDialog(false);
+  };
+
+  const handleChangeId = (event) => {
+    setSelectedAddId(event.target.value);
+  };
+
 
   return (
     <div className="channels">
@@ -139,44 +200,68 @@ function Channels() {
       <div className="channels-left">
 
         <div className="channels-left1">
-          <img className="nav-logo" src={LinkrLogo} width={130} style={{marginBottom:'20px'}}/>
           <h1>Channels</h1>
         </div>
-
 
         <div className="channels-left2">
           {
             channelList && 
             channelList.map((group) => {
-              const { name, id } = group;
               return (
-                <div key={id} className="individual-channel">
-                  <p>Channel Name: {name}</p>
-                  <p>Channel ID: {id}</p>
+                <div 
+                  key={group.id} 
+                  className="individual-channel" 
+                  onClick={() => {setSelectedChannel(group.id); setSelectedChannelName(group.name)}}
+                  style={{backgroundColor: selectedChannel === group.id ? "#775279" : "transparent",}}
+                >
+                  <p>Channel Name: {group.name}</p>
+                  <p>Channel ID: {group.id}</p>
                 </div>
               )
             })
           }
         </div>
 
-    
         <div className="channels-left3">
           <button className="create-channel-btn" onClick={handleOpenAddDialog}>+ Create Channel</button>
         </div>
 
       </div>
     
-      <div className="channels-right">
-          <h1>Channels name will be here</h1>
-      </div>
 
+      <div className="channels-right">
+
+        <div className="channels-right1">
+          {selectedChannel ? (<div className="channels-right1A">
+            <h1>{selectedChannelName}</h1>
+            <div>
+              <button className="channel-details-btn" onClick={handleOpenDetailsDialog}>Details</button>
+              <button className="channel-details-btn" onClick={handleOpenMembersDialog}>Add Member</button></div>
+            </div>
+            ) : (
+            <h1>Select a Channel</h1>
+          )}
+
+        </div>
+
+        <div className="channels-right2">
+          {selectedChannel ? (
+            <ChannelChatBox selectedChannel={selectedChannel} selectedChannelName={selectedChannelName} userHeaders={userHeaders} />
+            ) : (
+            <p>Select a channel.</p>
+          )}
+        </div>
+      </div>
+      
+
+      {/* MODAL (CREATE CHANNEL)*/}
       <Dialog open={openAddDialog} onClose={handleCloseAddDialog}>
         <DialogTitle>Create Channel</DialogTitle>
         <form onSubmit={handleAddChannel}>
           
           <label>Channel Name:</label>
           <input
-            type="number"
+            type="text"
             className="input-style"
             onChange={(event) => setChannelName(event.target.value)}
             >
@@ -184,25 +269,74 @@ function Channels() {
           <div>
             {userList && userList
               .filter((individual) => individual.id >= 194)
-              .map(individual => (
-              <div key={individual.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    onChange={e => handleCheckboxChange(e, individual.id)}
-                    checked={selectedIds.includes(individual.id)}
-                  />
-                  {individual.name}
-                </label>
-              </div>
-            ))}
+              .map((individual) => {
+                const { id, email } = individual;
+                return(
+                  <div key={id}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(id)}
+                        onChange={() => handleCheckboxChange(id)}
+                      />
+                      {email}
+                    </label>
+                  </div>
+                );
+              })
+            }
           </div>
 
-          <button type='submit'>Cancel</button>
-          <button onClick={handleAddChannel}>Add</button>
+          <button onClick={() => {handleCloseAddDialog(); setSelectedIds([])}}>Cancel</button>
+          <button type='submit' >Add</button>
         </form>
       </Dialog>
       
+
+      {/* MODEL (CHANNEL DETAILS) */}
+      <Dialog open={openDetailsDialog} onClose={handleCloseDetailsDialog}>
+        <DialogTitle>CHANNEL DETAILS</DialogTitle>
+        <p>Channel Name: {channelDetails.name}</p>
+        <p>Channel ID: {channelDetails.id}</p>
+        {userList && userList
+          .filter((owner) => owner.id === channelDetails.owner_id)
+          .map((owner) =>{
+            const {email, id} = owner;
+            return(
+              <div key={id}>
+                <p>Channel Owner: {email}</p>
+              </div>
+            );
+          })
+        }
+        <p>No. of Members: {memberArrayLength}</p>
+        <button onClick={() => {handleCloseDetailsDialog()}}>Close</button>
+      </Dialog>
+
+
+      {/* MODAL (ADD MEMBER TO CHANNEL)*/}
+      <Dialog open={openMembersDialog} onClose={handleCloseMembersDialog}>
+        <DialogTitle>ADD MEMBER TO THE CHANNEL</DialogTitle>
+        <form onSubmit={handleAddMember}>
+          <div>
+            <label></label>
+            <select id="item-select" onChange={handleChangeId} value={selectedAddId}>
+              <option value="">--Choose a member--</option>
+              {userList && userList
+                .filter((member) => member.id >= 194)
+                .map((member) => (
+                <option key={member.id} value={member.id}>
+                {member.email}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button onClick={() => {handleCloseMembersDialog(); setSelectedAddId()}}>Cancel</button>
+          <button type='submit' >Add</button>
+        </form>
+      </Dialog>
+
 
     </div>
   );

@@ -18,10 +18,7 @@ function ChatBox({ selectedUser, userHeaders }) {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(
-        `${API_URL}/messages?receiver_id=${selectedUser.id}&receiver_class=User`,
-        { headers: userHeaders }
-      );
+      const res = await axios.get(`${API_URL}/messages?receiver_id=${selectedUser.id}&receiver_class=User`,{ headers: userHeaders });
       setMessages(res.data.data);
     } catch (err) {
       console.error('Failed to fetch messages', err);
