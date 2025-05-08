@@ -72,6 +72,8 @@
     flex-direction: column;
     
     margin-inline: auto;
+
+    width: 60%;
     
 }
 
@@ -111,6 +113,11 @@
 
 
 
+
+.create-account-button-div{
+    display: flex;
+    justify-content: center;
+}
 
 
 

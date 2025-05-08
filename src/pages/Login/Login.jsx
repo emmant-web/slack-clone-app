@@ -135,7 +135,14 @@ const { onLogin } = props;
         </div>
        </div>
 
-       <button className="login-button" type="submit">Login</button>
+
+
+<div className="login-button-div">
+<button className="login-button" type="submit">Login</button>
+</div>
+      
+
+
        <button className="google-login-button">
         <img className="google-g-logo" src={GoogleGLogo} alt="google-g-logo" />
         Sign In With Google</button>

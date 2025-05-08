@@ -66,8 +66,11 @@
 .input-div{
     display: flex;
     flex-direction: column;
-    
     margin-inline: auto;
+
+    width: 60%;
+
+
     
 }
 
@@ -134,13 +137,21 @@
  color: #4A154B;
 }
 
+.login-button-div{
+    display: flex;
+    justify-content: center;
+}
+
+
 
 .login-button{
     width: 300px;
     height: 45px;
 
     padding: 12px 20px;
-    margin-inline: auto;
+    /* margin-inline: auto; */
+    margin-right: auto;
+    margin-left: auto;
     border-radius: 10px;
     border: none;
 
@@ -170,6 +181,9 @@
     border: 1px solid #8c8c8c;
 
     margin-bottom: 0.7rem;
+
+
+    /* for fixing the content of the button inside */
 
     display: flex;
     justify-content: center;

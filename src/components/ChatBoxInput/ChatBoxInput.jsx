@@ -1,4 +1,4 @@
-// import './ChatBoxInput.css';
+import './ChatBoxInput.css';
 import { useState } from 'react';
 
 function ChatBoxInput({ onSend }) {

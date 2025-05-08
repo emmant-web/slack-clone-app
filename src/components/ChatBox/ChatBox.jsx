@@ -1,13 +1,20 @@
-// import './ChatBox.css';
+import './ChatBox.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../constants/Constants';
 import ChatBoxInput from '../ChatBoxInput/ChatBoxInput';
 
 
+// this is for fixing the chatbubbles
+import { useData } from '../../context/DataProvider';
+
+
 
 function ChatBox({ selectedUser, userHeaders }) {
   const [messages, setMessages] = useState([]);
+
+  const { currentUser } = useData();
+
 
   const fetchMessages = async () => {
     try {
@@ -52,6 +59,26 @@ function ChatBox({ selectedUser, userHeaders }) {
 
 
 
+  // return (
+  //   <div className="chat-box">
+  //     <div className="chat-history">
+  //       {messages.map((msg) => (
+  //         <div
+  //           key={msg.id}
+  //           className={`chat-message ${
+  //             msg.sender_id === selectedUser.id ? 'incoming' : 'outgoing'
+  //           }`}
+  //         >
+  //           {msg.body}
+  //         </div>
+  //       ))}
+  //     </div>
+
+  //     <ChatBoxInput onSend={handleSend} />
+  //   </div>
+  // );
+
+
   return (
     <div className="chat-box">
       <div className="chat-history">
@@ -59,7 +86,7 @@ function ChatBox({ selectedUser, userHeaders }) {
           <div
             key={msg.id}
             className={`chat-message ${
-              msg.sender_id === selectedUser.id ? 'incoming' : 'outgoing'
+              msg.sender_id === currentUser.id ? 'incoming' : 'outgoing'
             }`}
           >
             {msg.body}
@@ -70,6 +97,10 @@ function ChatBox({ selectedUser, userHeaders }) {
       <ChatBoxInput onSend={handleSend} />
     </div>
   );
+
+
+
+  
 }
 
 export default ChatBox;

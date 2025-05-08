@@ -146,7 +146,10 @@ function SignUp(){
 
 
 
-           <button className="create-account-button">Create Account</button>
+<div className="create-account-button-div">
+<button className="create-account-button">Create Account</button>
+</div>
+           
            
 
            <p className="no-account-ca">Have an account?
