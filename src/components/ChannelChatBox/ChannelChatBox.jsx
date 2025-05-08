@@ -6,6 +6,7 @@ import ChannelChatBoxInput from '../ChannelChatBoxInput/ChannelChatBoxInput';
 
 
 
+
 function ChannelChatBox({ selectedChannel, userHeaders }) {
   const [messages, setMessages] = useState([]);
 
@@ -42,6 +43,7 @@ function ChannelChatBox({ selectedChannel, userHeaders }) {
         },
         { headers: userHeaders }
       );
+      
 
       fetchMessages(); // Refresh messages after sending
     } catch (err) {
@@ -53,21 +55,21 @@ function ChannelChatBox({ selectedChannel, userHeaders }) {
 
 
   return (
-    <div className="chat-box">
-      <div className="chat-history">
+    <div className="channel-chat-box">
+      <div className="channel-chat-history">
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`chat-message ${
-              msg.sender_id === selectedChannel ? 'incoming' : 'outgoing'
-            }`}
+            className={msg.sender.uid === userHeaders.uid ? 'incoming' : 'outgoing'}
           >
-            {msg.body}
+            {msg.sender.uid}
+            <div className="channel-msg-body">{msg.body}</div>
           </div>
         ))}
       </div>
-
-      <ChannelChatBoxInput onSend={handleSend} />
+      <div className='channel-chat-input'>
+        <ChannelChatBoxInput onSend={handleSend} />
+      </div>
     </div>
   );
 }

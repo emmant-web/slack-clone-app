@@ -1,0 +1,59 @@
+.channel-chat-box {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 60px;
+    color: black;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    height: calc(100vh - 136px);
+}
+
+.channel-chat-history {
+    grid-area: 1 / 1 / 1 / 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: end;
+}
+
+
+
+
+
+.channel-chat-input {
+    grid-area: 2 / 1 / 2 / 1;
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.incoming {
+    align-self: end;
+    text-align: right;
+}
+
+.incoming > .channel-msg-body {
+    width: max-content;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px 10px 0 10px;
+    background-color: White;
+    color: #572758;
+    border: 1px solid lightgrey;
+    margin-top: 3px;
+}
+
+.outgoing {
+    align-self: start;
+    text-align: left;
+}
+
+.outgoing > .channel-msg-body {
+    width: max-content;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    background-color: #572758;
+    color: #FFFFFF;
+    margin-top: 3px;
+}
