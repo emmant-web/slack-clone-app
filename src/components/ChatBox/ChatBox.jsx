@@ -5,20 +5,16 @@ import { API_URL } from '../../constants/Constants';
 import ChatBoxInput from '../ChatBoxInput/ChatBoxInput';
 
 
-// this is for fixing the chatbubbles
-import { useData } from '../../context/DataProvider';
-
-
 
 function ChatBox({ selectedUser, userHeaders }) {
-  const [messages, setMessages] = useState([]);
-
-  const { currentUser } = useData();
-
+  const [messages, setMessages] = useState([]); 
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`${API_URL}/messages?receiver_id=${selectedUser.id}&receiver_class=User`,{ headers: userHeaders });
+      const res = await axios.get(
+        `${API_URL}/messages?receiver_id=${selectedUser.id}&receiver_class=User`,
+        { headers: userHeaders }
+      );
       setMessages(res.data.data);
     } catch (err) {
       console.error('Failed to fetch messages', err);
@@ -77,25 +73,25 @@ function ChatBox({ selectedUser, userHeaders }) {
 
 
   return (
-    <div className="chat-box">
-      <div className="chat-history">
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`chat-message ${
-              msg.sender_id === currentUser.id ? 'incoming' : 'outgoing'
-            }`}
-          >
-            {msg.body}
-          </div>
-        ))}
-      </div>
-
-      <ChatBoxInput onSend={handleSend} />
+  <div className="chat-box">
+    <div className="chat-history">
+      {messages.map((msg) => (
+        <div key={msg.id} className="chat-message">
+          <div className="chat-sender">{msg.sender.email}</div>
+          <div className="chat-body">{msg.body}</div>
+        </div>
+      ))}
     </div>
-  );
+
+    <ChatBoxInput onSend={handleSend} />
+  </div>
+);
 
 
+
+  {/* // try daw not to user a strict equality it might be because of that 
+            {msg.sender_id}
+            {selectedUser.id} //this has the same data as msg.sender this is why both sides are blue */}
 
   
 }

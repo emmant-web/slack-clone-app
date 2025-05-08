@@ -35,20 +35,25 @@ function MessagingUsersList({ users, onUserSelect }) {
       {/* Search bar and button */}
       <Stack direction="row" spacing={1} marginBottom={2}>
 
-        <TextField
-          sx={{
-            bgcolor: "white",
-            border: "1px solid #ddd",
-br: "5px"
-          }}
+      <TextField
+    sx={{
+      bgcolor: "white",
+      border: "1px solid #ddd",
+      borderRadius: "5px", // Increase the border radius for a rounder appearance
 
-          label="Search by email"
-          variant="outlined"
-          size="small"
-          fullWidth
-          value={inputTerm}
-          onChange={(e) => setInputTerm(e.target.value)}
-        />
+      "& .MuiOutlinedInput-root": {
+        borderRadius: "5px", // Apply rounded corners to the input field itself
+        bgcolor: "7C3085"
+      },
+    
+    }}
+    label="Search by email"
+    variant="outlined"
+    size="small"
+    fullWidth
+    value={inputTerm}
+    onChange={(e) => setInputTerm(e.target.value)}
+  />
 
         <Button 
           sx={{
@@ -63,7 +68,7 @@ br: "5px"
       <Paper
         elevation={2}
         sx={{
-          maxHeight: 550,
+          maxHeight: 535,
           overflowY: "auto",
           padding: 1,
           border: "1px solid #ddd",

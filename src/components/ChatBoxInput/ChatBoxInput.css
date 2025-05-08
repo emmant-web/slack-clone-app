@@ -3,6 +3,7 @@
     padding: 12px 16px;
     border-top: 1px solid #ccc;
     background-color: #fff;
+   
   }
   
   .chat-input {
@@ -15,13 +16,15 @@
     transition: border 0.2s ease-in-out;
   }
   
+
+
   .chat-input:focus {
     border-color: #1976d2;
   }
   
   .chat-input-form button {
     margin-left: 10px;
-    background-color: #1976d2;
+    background-color: #007A5A;
     border: none;
     color: white;
     padding: 10px 18px;
@@ -32,6 +35,6 @@
   }
   
   .chat-input-form button:hover {
-    background-color: #115293;
+    background-color: #00503a;
   }
   

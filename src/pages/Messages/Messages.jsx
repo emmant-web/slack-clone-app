@@ -12,7 +12,7 @@ import ChatBox from '../../components/ChatBox/ChatBox.jsx';
 
 
 function Messages() {
-  const { userHeaders } = useData();
+  const { currentUser, userHeaders } = useData();
   const [users, setUsers] = useState([]);
 
   const [selectedUser, setSelectedUser] = useState(null);
@@ -55,7 +55,13 @@ function Messages() {
       <div className="messages-right">
 
         {selectedUser ? (
-          <ChatBox selectedUser={selectedUser} userHeaders={userHeaders} />
+          // <ChatBox selectedUser={selectedUser} userHeaders={userHeaders} />
+          <ChatBox
+          selectedUser={selectedUser}
+          userHeaders={userHeaders}
+
+        />
+
         ) : (
           <p style={{ padding: '1rem' }}>Select a user to start chatting.</p>
         )}
