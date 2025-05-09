@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataProvider";
 
 
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 
 import LinkrFullLogo from '../../assets/logos/linkr-full-logo.svg'
