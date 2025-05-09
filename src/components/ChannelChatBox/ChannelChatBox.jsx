@@ -60,7 +60,7 @@ function ChannelChatBox({ selectedChannel, userHeaders }) {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={msg.sender.uid === userHeaders.uid ? 'incoming' : 'outgoing'}
+            className={msg.sender.uid === userHeaders.uid ? 'outgoing' : 'incoming'}
           >
             {msg.sender.uid}
             <div className="channel-msg-body">{msg.body}</div>
