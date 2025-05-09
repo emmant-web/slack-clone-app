@@ -15,9 +15,8 @@
     flex-direction: column;
     gap: 20px;
     justify-content: end;
+    overflow-y: auto;
 }
-
-
 
 
 
@@ -27,28 +26,29 @@
     border-top: 1px solid #f0f0f0;
 }
 
-.incoming {
+.outgoing {
     align-self: end;
     text-align: right;
+    display: grid;
+    justify-items: end;
 }
 
-.incoming > .channel-msg-body {
+.outgoing > .channel-msg-body {
     width: max-content;
     max-width: 400px;
     padding: 10px;
     border-radius: 10px 10px 0 10px;
-    background-color: White;
+    background-color: #E7E6EB;
     color: #572758;
-    border: 1px solid lightgrey;
     margin-top: 3px;
 }
 
-.outgoing {
+.incoming {
     align-self: start;
     text-align: left;
 }
 
-.outgoing > .channel-msg-body {
+.incoming > .channel-msg-body {
     width: max-content;
     max-width: 400px;
     padding: 10px;

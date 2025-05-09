@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import './Channels.css';
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
@@ -212,7 +212,7 @@ function Channels() {
                   key={group.id} 
                   className="individual-channel" 
                   onClick={() => {setSelectedChannel(group.id); setSelectedChannelName(group.name)}}
-                  style={{backgroundColor: selectedChannel === group.id ? "#775279" : "transparent",}}
+                  style={{backgroundColor: selectedChannel === group.id ? "#e3f2fd" : "transparent",}}
                 >
                   <p>Channel Name: {group.name}</p>
                   <p>Channel ID: {group.id}</p>
@@ -230,27 +230,26 @@ function Channels() {
     
 
       <div className="channels-right">
-
-        <div className="channels-right1">
-          {selectedChannel ? (<div className="channels-right1A">
-            <h1>{selectedChannelName}</h1>
-            <div>
-              <button className="channel-details-btn" onClick={handleOpenDetailsDialog}>Details</button>
-              <button className="channel-details-btn" onClick={handleOpenMembersDialog}>Add Member</button></div>
+        {selectedChannel ? (
+          <div className="channels-rightA">
+            <div className="channels-right1">
+              <h1>{selectedChannelName}</h1>
+              <div>
+                <button className="channel-details-btn" onClick={handleOpenDetailsDialog}>Details</button>
+                <button className="channel-details-btn" onClick={handleOpenMembersDialog}>Add Member</button>
+              </div>
             </div>
-            ) : (
-            <h1>Select a Channel</h1>
-          )}
-
-        </div>
-
-        <div className="channels-right2">
-          {selectedChannel ? (
-            <ChannelChatBox selectedChannel={selectedChannel} selectedChannelName={selectedChannelName} userHeaders={userHeaders} />
-            ) : (
-            <p>Select a channel.</p>
-          )}
-        </div>
+            <div className="channels-right2">
+                <ChannelChatBox selectedChannel={selectedChannel} selectedChannelName={selectedChannelName} userHeaders={userHeaders} />
+            </div>
+          </div>
+          ) : (
+          <div className="channels-rightB">
+            <div className="channels-rightB1">
+              <p>Select a channel to show messages.</p>
+            </div>
+          </div>
+        )}
       </div>
       
 
