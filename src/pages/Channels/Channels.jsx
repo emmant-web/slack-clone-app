@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import './Channels.css';
 import Navigation from '../../components/Navigation/Navigation.jsx';
 import CurrentUser from '../../components/CurrentUser/CurrentUser.jsx';
+import ChannelChatBox from '../../components/ChannelChatBox/ChannelChatBox.jsx';
 import axios from "axios";
 import { API_URL } from "../../constants/Constants";
 import { useData } from "../../context/DataProvider";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import ChannelChatBox from '../../components/ChannelChatBox/ChannelChatBox.jsx';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
 
 
 function Channels() {
@@ -254,73 +258,90 @@ function Channels() {
       
 
       {/* MODAL (CREATE CHANNEL)*/}
-      <Dialog open={openAddDialog} onClose={handleCloseAddDialog}>
-        <DialogTitle>Create Channel</DialogTitle>
-        <form onSubmit={handleAddChannel}>
-          
-          <label>Channel Name:</label>
-          <input
-            type="text"
-            className="input-style"
-            onChange={(event) => setChannelName(event.target.value)}
-            >
-          </input>
-          <div>
-            {userList && userList
-              .filter((individual) => individual.id >= 194)
-              .map((individual) => {
-                const { id, email } = individual;
-                return(
-                  <div key={id}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={selectedIds.includes(id)}
-                        onChange={() => handleCheckboxChange(id)}
-                      />
-                      {email}
-                    </label>
-                  </div>
-                );
-              })
-            }
-          </div>
-
-          <button onClick={() => {handleCloseAddDialog(); setSelectedIds([])}}>Cancel</button>
-          <button type='submit' >Add</button>
-        </form>
+      <Dialog 
+        open={openAddDialog} 
+        onClose={handleCloseAddDialog}
+        scroll={'paper'}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        
+      >
+        <DialogTitle id="scroll-dialog-title" sx={{ backgroundColor:'#572758', color:'#FFFFFF', textAlign:'center', fontWeight:'bold'}}>CREATE A CHANNEL</DialogTitle>
+        <DialogContent sx={{ width:350}}  dividers={'papers'}>
+          <form onSubmit={handleAddChannel}>
+            <label className="dialogBoxText3">Channel Name:</label>
+            <input
+              type="text"
+              maxLength={14}
+              className="dialogBoxText4"
+              onChange={(event) => setChannelName(event.target.value)}
+              >
+            </input>
+            <p className="dialogBoxText3">Select member/s to add:</p>
+            <div>
+              {userList && userList
+                .filter((individual) => individual.id >= 194)
+                .map((individual) => {
+                  const { id, email } = individual;
+                  return(
+                    <div key={id}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          className="dialogBoxChecklist"
+                          checked={selectedIds.includes(id)}
+                          onChange={() => handleCheckboxChange(id)}
+                        />
+                        {email}
+                      </label>
+                    </div>
+                  );
+                })
+              }
+            </div>
+            <DialogActions sx={{textAlign:'center'}}>
+              <button className="dialogBoxButton1" type="reset" onClick={() => {handleCloseAddDialog(); setSelectedIds([])}}>CANCEL</button>
+              <button className="dialogBoxButton1" type="submit" >ADD</button>
+            </DialogActions>
+          </form>
+        </DialogContent>
       </Dialog>
       
 
       {/* MODEL (CHANNEL DETAILS) */}
       <Dialog open={openDetailsDialog} onClose={handleCloseDetailsDialog}>
-        <DialogTitle>CHANNEL DETAILS</DialogTitle>
-        <p>Channel Name: {channelDetails.name}</p>
-        <p>Channel ID: {channelDetails.id}</p>
-        {userList && userList
-          .filter((owner) => owner.id === channelDetails.owner_id)
-          .map((owner) =>{
-            const {email, id} = owner;
-            return(
-              <div key={id}>
-                <p>Channel Owner: {email}</p>
-              </div>
-            );
-          })
-        }
-        <p>No. of Members: {memberArrayLength}</p>
-        <button onClick={() => {handleCloseDetailsDialog()}}>Close</button>
+        <DialogTitle sx={{ backgroundColor:'#572758', color:'#FFFFFF', textAlign:'center', fontWeight:'bold'}}>CHANNEL DETAILS</DialogTitle>
+        <DialogContent sx={{ mt:2}}>
+          <p className="dialogBoxText1">Channel Name: </p><p className="dialogBoxText2">{channelDetails.name}</p>
+          <p className="dialogBoxText1">Channel ID: </p><p className="dialogBoxText2">{channelDetails.id}</p>
+          {userList && userList
+            .filter((owner) => owner.id === channelDetails.owner_id)
+            .map((owner) =>{
+              const {email, id} = owner;
+              return(
+                <div key={id}>
+                  <p className="dialogBoxText1">Channel Owner: </p><p className="dialogBoxText2">{email}</p>
+                </div>
+              );
+            })
+          }
+          <p className="dialogBoxText1">No. of Members: </p><p className="dialogBoxText2">{memberArrayLength}</p>
+          
+        </DialogContent>
+        <button className="dialogBoxButton" onClick={() => {handleCloseDetailsDialog()}}>CLOSE</button>
       </Dialog>
 
 
-      {/* MODAL (ADD MEMBER TO CHANNEL)*/}
+      {/* MODAL (ADD MEMBER TO CHANNEL) */}
+      {/* For improvement: Remove the already added member from the list. */}
       <Dialog open={openMembersDialog} onClose={handleCloseMembersDialog}>
-        <DialogTitle>ADD MEMBER TO THE CHANNEL</DialogTitle>
+        <DialogTitle sx={{ backgroundColor:'#572758', color:'#FFFFFF', textAlign:'center', fontWeight:'bold'}}>ADD MEMBER TO THE CHANNEL</DialogTitle>
+        <DialogContent sx={{ mt:2, textAlign:'center' }}>
         <form onSubmit={handleAddMember}>
           <div>
             <label></label>
-            <select id="item-select" onChange={handleChangeId} value={selectedAddId}>
-              <option value="">--Choose a member--</option>
+            <select className="member-select" onChange={handleChangeId} value={selectedAddId}>
+              <option className="member-select1" value="">--Choose a member--</option>
               {userList && userList
                 .filter((member) => member.id >= 194)
                 .map((member) => (
@@ -330,10 +351,10 @@ function Channels() {
               ))}
             </select>
           </div>
-
-          <button onClick={() => {handleCloseMembersDialog(); setSelectedAddId()}}>Cancel</button>
-          <button type='submit' >Add</button>
+          <button className="dialogBoxButton1" type="reset" onClick={() => {handleCloseMembersDialog(); setSelectedAddId()}}>CANCEL</button>
+          <button className="dialogBoxButton1" type="submit" >ADD</button>
         </form>
+        </DialogContent>
       </Dialog>
 
 
