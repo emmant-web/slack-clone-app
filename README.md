@@ -23,7 +23,3 @@ This was our second major React project, where we explored **React Router** for 
 
 - emmant-web
 - pgdedios
-
----
-
-Feel free to fork or clone the project to explore how we built a simple version of a real-time chat platform.
